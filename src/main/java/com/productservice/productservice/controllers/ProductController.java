@@ -6,6 +6,8 @@ import com.productservice.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -25,8 +27,13 @@ public class ProductController {
 
     }
     @GetMapping
-    public void getAllProducts(){
+    public List<GenericProductDto> getAllProducts(){
+        return productService.getAllProducts();
+    }
 
+    @PostMapping()
+    public GenericProductDto createProduct(@RequestBody GenericProductDto genericProductDto){
+        return productService.createProduct(genericProductDto);
     }
 
    // @DeleteMapping("/products/{id}")
@@ -35,9 +42,7 @@ public class ProductController {
 
     }
 
-    public void createProduct(){
 
-    }
     public void updateProductByID(){
 
     }
