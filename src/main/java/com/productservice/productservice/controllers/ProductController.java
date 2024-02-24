@@ -38,8 +38,8 @@ public class ProductController {
 
    // @DeleteMapping("/products/{id}")
     @DeleteMapping("/{id}")
-    public void deleteProductByID(){
-
+    public GenericProductDto deleteProductByID(@PathVariable("id") int id){
+        return productService.deleteProductByID(id);
     }
 
 

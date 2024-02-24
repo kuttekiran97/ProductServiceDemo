@@ -9,7 +9,7 @@ import java.util.List;
 public interface ProductService {
     GenericProductDto getProductByID(Long id);
     List<GenericProductDto> getAllProducts();
-    void deleteProductByID();
+    GenericProductDto deleteProductByID(int id);
     GenericProductDto createProduct(GenericProductDto genericProductDto);
     void updateProductByID();
 
