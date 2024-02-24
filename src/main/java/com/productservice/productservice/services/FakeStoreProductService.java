@@ -1,5 +1,6 @@
 package com.productservice.productservice.services;
 
+import com.productservice.productservice.Exceptions.ProductNotFoundException;
 import com.productservice.productservice.dtos.FakeStoreProductsDto;
 import com.productservice.productservice.dtos.GenericProductDto;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -46,7 +47,7 @@ public class FakeStoreProductService implements ProductService{
 
 
     @Override
-    public GenericProductDto getProductByID(Long id) {
+    public GenericProductDto getProductByID(Long id) throws ProductNotFoundException {
         //Integrate the Fakestore API
         // Using RestTemplate,we can call external APIs.In our case,its Fakestore API's
 
@@ -56,6 +57,9 @@ public class FakeStoreProductService implements ProductService{
 
         //Convert FakeStoreProductsDto to GenericProductDto
         FakeStoreProductsDto fakeStoreProductsDto = responseEntity.getBody();
+        if(fakeStoreProductsDto==null){
+            throw new ProductNotFoundException("Product not found with this id " +  id);
+        }
         return convertToGenericProductDto(fakeStoreProductsDto);
     }
 
