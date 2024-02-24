@@ -52,15 +52,18 @@ public class ProductController {
         return productService.updateProductByID(id,genericProductDto);
     }
 
-    @ExceptionHandler(ProductNotFoundException.class)
-    private ResponseEntity handleProductNotFoundException(ProductNotFoundException productNotFoundException){
-        ExceptionDto exceptionDto = new ExceptionDto();
-        exceptionDto.setMessage(productNotFoundException.getMessage());
-        exceptionDto.setHttpStatus(HttpStatus.NOT_FOUND);
 
-        ResponseEntity<ExceptionDto> responseEntity = new ResponseEntity<>(exceptionDto,HttpStatus.NOT_FOUND);
-        return responseEntity;
+    //Below code is moved to ProductControllerDevices
 
-    }
+//    @ExceptionHandler(ProductNotFoundException.class)
+//    private ResponseEntity handleProductNotFoundException(ProductNotFoundException productNotFoundException){
+//        ExceptionDto exceptionDto = new ExceptionDto();
+//        exceptionDto.setMessage(productNotFoundException.getMessage());
+//        exceptionDto.setHttpStatus(HttpStatus.NOT_FOUND);
+//
+//        ResponseEntity<ExceptionDto> responseEntity = new ResponseEntity<>(exceptionDto,HttpStatus.NOT_FOUND);
+//        return responseEntity;
+//
+//    }
 
 }
