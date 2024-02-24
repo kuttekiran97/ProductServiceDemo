@@ -1,6 +1,5 @@
 package com.productservice.productservice.controllers;
 
-import com.productservice.productservice.dtos.FakeStoreProductsDto;
 import com.productservice.productservice.dtos.GenericProductDto;
 import com.productservice.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -43,8 +42,9 @@ public class ProductController {
     }
 
 
-    public void updateProductByID(){
-
+    @PutMapping("/{id}")
+    public GenericProductDto updateProductByID(@PathVariable("id") int id,@RequestBody GenericProductDto genericProductDto){
+        return productService.updateProductByID(id,genericProductDto);
     }
 
 }
