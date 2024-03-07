@@ -1,13 +1,24 @@
 package com.productservice.productservice.models;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Entity
 public class Product extends BaseModel{
     private String title;
-    private String desc;
+    private String description;
     private int rating;
+
+    //Category is a primitive data,Hence we need to find the Cardinality.
+    /*
+          1             1
+        Product  -> Category
+          M             1
+     */
+    @ManyToOne
     private Category category;
 }
