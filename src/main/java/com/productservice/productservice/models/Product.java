@@ -1,9 +1,6 @@
 package com.productservice.productservice.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
@@ -20,7 +17,6 @@ public class Product extends BaseModel{
           M             1
      */
     @ManyToOne(optional = false)
-    @JoinColumn(nullable = false)
     private Category category;
 
     /*
@@ -28,8 +24,7 @@ public class Product extends BaseModel{
         Product ----Price     => 1:1   => can be M:1, depend on requirement.For now we considered,1:1.
           1     ----  1
      */
-    @OneToOne(optional = false)
-    @JoinColumn(nullable = false)
+    @OneToOne(optional = false,cascade = CascadeType.REMOVE)
     private Price price;
 
 }
