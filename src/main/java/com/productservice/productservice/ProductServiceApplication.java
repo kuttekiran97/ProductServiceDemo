@@ -2,50 +2,86 @@ package com.productservice.productservice;
 
 
 
+import com.productservice.productservice.Repositories.CategoryRepository;
+import com.productservice.productservice.Repositories.ProductRepository;
 import com.productservice.productservice.inheritanceRelations.singleTable.*;
+import com.productservice.productservice.models.Category;
+import com.productservice.productservice.models.Product;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @SpringBootApplication
 public class ProductServiceApplication implements CommandLineRunner {
- 	private ST_MentorRepository ST_mentorRepository;
-	 private ST_UserRepository ST_userRepository;
-	 private ST_StudentRepository ST_studentRepository;
+// 	private ST_MentorRepository ST_mentorRepository;
+//	 private ST_UserRepository ST_userRepository;
+//	 private ST_StudentRepository ST_studentRepository;
+	private final CategoryRepository categoryRepository;
+	private final ProductRepository productRepository;
 
-	 ProductServiceApplication(ST_MentorRepository tbc_mentorRepository,ST_UserRepository tbc_userRepository,ST_StudentRepository tbc_studentRepository){
-		 this.ST_mentorRepository=tbc_mentorRepository;
-		 this.ST_studentRepository=tbc_studentRepository;
-		 this.ST_userRepository=tbc_userRepository;
-	 }
+	ProductServiceApplication(CategoryRepository categoryRepository,
+							  ProductRepository productRepository){
+		this.categoryRepository = categoryRepository;
+		this.productRepository = productRepository;
+	}
 	public static void main(String[] args) {
 		SpringApplication.run(ProductServiceApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		Mentor mentor=new Mentor();
-		mentor.setAvgRating(4.9);
-		mentor.setName("Kiran");
-		mentor.setEmailId("abc@gmail.com");
-		ST_mentorRepository.save(mentor);
+//		Mentor mentor=new Mentor();
+//		mentor.setAvgRating(4.9);
+//		mentor.setName("Kiran");
+//		mentor.setEmailId("abc@gmail.com");
+//		ST_mentorRepository.save(mentor);
+//
+//		Student student = new Student();
+//		student.setPsp(90);
+//		student.setName("John");
+//		student.setEmailId("xyz.com");
+//		ST_studentRepository.save(student);
+//
+//		User user = new User();
+//		user.setName("John");
+//		user.setEmailId("xyz.com");
+//		ST_userRepository.save(user);
+//	List<User> users= ST_userRepository.findAll();
+//
+//		for (User user1: users){
+//			System.out.println(user1.toString());
+//		}
 
-		Student student = new Student();
-		student.setPsp(90);
-		student.setName("John");
-		student.setEmailId("xyz.com");
-		ST_studentRepository.save(student);
+//		Category category = new Category();
+//
+//		category.setName("Apple devices");
+//
+//		Category savedCategory = categoryRepository.save(category);
 
-		User user = new User();
-		user.setName("John");
-		user.setEmailId("xyz.com");
-		ST_userRepository.save(user);
-	List<User> users= ST_userRepository.findAll();
+		Optional<Category> category = categoryRepository.findById(UUID.fromString("f9cc844d-fc00-4dbd-911d-95862ed61718"));
 
-		for (User user1: users){
-			System.out.println(user1.toString());
+		if(category.isEmpty()){
+			throw new Exception("Category not found");
+		}
+
+
+//		Product product = new Product();
+//		product.setTitle("iPhone 15");
+//		product.setDescription("iphone 15,16GB RAM,128 HD");
+//		product.setPrice(4);
+//		product.setCategory(category.get());
+//
+//		Product savedProduct = productRepository.save(product);
+
+		//Find all products with category = Apple devices
+
+		List<Product> products = category.get().getProducts();
+		for(Product product: products){
+			System.out.println(product.toString());
 		}
 
 	}
