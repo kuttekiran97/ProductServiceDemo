@@ -3,9 +3,11 @@ package com.productservice.productservice;
 
 
 import com.productservice.productservice.Repositories.CategoryRepository;
+import com.productservice.productservice.Repositories.PriceRepository;
 import com.productservice.productservice.Repositories.ProductRepository;
 import com.productservice.productservice.inheritanceRelations.singleTable.*;
 import com.productservice.productservice.models.Category;
+import com.productservice.productservice.models.Price;
 import com.productservice.productservice.models.Product;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -22,11 +24,14 @@ public class ProductServiceApplication implements CommandLineRunner {
 //	 private ST_StudentRepository ST_studentRepository;
 	private final CategoryRepository categoryRepository;
 	private final ProductRepository productRepository;
+	private final PriceRepository priceRepository;
 
 	ProductServiceApplication(CategoryRepository categoryRepository,
-							  ProductRepository productRepository){
+							  ProductRepository productRepository,
+							  PriceRepository priceRepository){
 		this.categoryRepository = categoryRepository;
-		this.productRepository = productRepository;
+		this.productRepository =  productRepository;
+		this.priceRepository = priceRepository;
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(ProductServiceApplication.class, args);
@@ -62,11 +67,11 @@ public class ProductServiceApplication implements CommandLineRunner {
 //
 //		Category savedCategory = categoryRepository.save(category);
 
-		Optional<Category> category = categoryRepository.findById(UUID.fromString("f9cc844d-fc00-4dbd-911d-95862ed61718"));
-
-		if(category.isEmpty()){
-			throw new Exception("Category not found");
-		}
+//		Optional<Category> category = categoryRepository.findById(UUID.fromString("f9cc844d-fc00-4dbd-911d-95862ed61718"));
+//
+//		if(category.isEmpty()){
+//			throw new Exception("Category not found");
+//		}
 
 
 //		Product product = new Product();
@@ -79,10 +84,28 @@ public class ProductServiceApplication implements CommandLineRunner {
 
 		//Find all products with category = Apple devices
 
-		List<Product> products = category.get().getProducts();
-		for(Product product: products){
-			System.out.println(product.toString());
-		}
+//		List<Product> products = category.get().getProducts();
+//		for(Product product: products){
+//			System.out.println(product.toString());
+//		}
+
+		Price price = new Price();
+		price.setCurrency("INR");
+		price.setValue(10000.00);
+		Price savedPrice = priceRepository.save(price);
+
+		Category category = new Category();
+		category.setName("Apple devices");
+		Category savedCategory = categoryRepository.save(category);
+
+		Product product = new Product();
+		product.setTitle("iPhone 15");
+		product.setDescription("iphone 15,16GB RAM,128 HD");
+		product.setPrice(savedPrice);
+		product.setCategory(savedCategory);
+		Product savedProduct = productRepository.save(product);
+
+
 
 	}
 }
