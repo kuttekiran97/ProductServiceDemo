@@ -89,23 +89,23 @@ public class ProductServiceApplication implements CommandLineRunner {
 //			System.out.println(product.toString());
 //		}
 
-//		Price price = new Price();
-//		price.setCurrency("INR");
-//		price.setValue(10000.00);
-//		Price savedPrice = priceRepository.save(price);
-//
-//		Category category = new Category();
-//		category.setName("Apple devices");
-//		Category savedCategory = categoryRepository.save(category);
-//
-//		Product product = new Product();
-//		product.setTitle("iPhone 15");
-//		product.setDescription("iphone 15,16GB RAM,128 HD");
-//		product.setPrice(savedPrice);
-//		product.setCategory(savedCategory);
-//		Product savedProduct = productRepository.save(product);
+		Price price = new Price();
+		price.setCurrency("INR");
+		price.setValue(10000.00);
+		//Price savedPrice = priceRepository.save(price);
 
-		productRepository.deleteById(UUID.fromString("6a798a2b-5f0f-4f4b-baba-8972ee20d8b3"));
+		Category category = new Category();
+		category.setName("Apple devices");
+		Category savedCategory = categoryRepository.save(category);
+
+		Product product = new Product();
+		product.setTitle("iPhone 15");
+		product.setDescription("iphone 15,16GB RAM,128 HD");
+		product.setPrice(price);
+		product.setCategory(savedCategory);
+		Product savedProduct = productRepository.save(product);
+
+		//productRepository.deleteById(UUID.fromString("6a798a2b-5f0f-4f4b-baba-8972ee20d8b3"));
 
 
 

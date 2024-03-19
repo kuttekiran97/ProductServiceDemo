@@ -24,7 +24,7 @@ public class Product extends BaseModel{
         Product ----Price     => 1:1   => can be M:1, depend on requirement.For now we considered,1:1.
           1     ----  1
      */
-    @OneToOne(optional = false,cascade = CascadeType.REMOVE)
+    @OneToOne(optional = false,cascade = CascadeType.PERSIST)
     private Price price;
 
 }
