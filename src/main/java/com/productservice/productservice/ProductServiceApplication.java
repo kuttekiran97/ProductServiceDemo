@@ -39,7 +39,7 @@ public class ProductServiceApplication implements CommandLineRunner {
 	}
 
 	@Override
-	@Transactional /* This annotation is needed,if the Product in Category class is Lazy.
+	/*@Transactional  This annotation is needed,if the Product in Category class is Lazy.
 	 The queries should be in the same transactions,else you will get the error.
 	 Adding this annotation,makes all the queries in this method will be in one transaction*/
 	public void run(String... args) throws Exception {
