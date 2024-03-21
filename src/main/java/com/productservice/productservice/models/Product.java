@@ -6,6 +6,7 @@ import lombok.*;
 @Getter
 @Setter
 @Entity
+@ToString
 public class Product extends BaseModel{
     private String title;
     private String description;

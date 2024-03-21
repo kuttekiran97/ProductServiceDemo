@@ -23,16 +23,14 @@ public class ProductServiceApplication implements CommandLineRunner {
 // 	private ST_MentorRepository ST_mentorRepository;
 //	 private ST_UserRepository ST_userRepository;
 //	 private ST_StudentRepository ST_studentRepository;
-	private final CategoryRepository categoryRepository;
-	private final ProductRepository productRepository;
-	private final PriceRepository priceRepository;
 
-	ProductServiceApplication(CategoryRepository categoryRepository,
-							  ProductRepository productRepository,
-							  PriceRepository priceRepository){
-		this.categoryRepository = categoryRepository;
+	private ProductRepository productRepository;
+
+
+	ProductServiceApplication(ProductRepository productRepository){
+
 		this.productRepository =  productRepository;
-		this.priceRepository = priceRepository;
+
 	}
 	public static void main(String[] args) {
 		SpringApplication.run(ProductServiceApplication.class, args);
@@ -117,14 +115,19 @@ public class ProductServiceApplication implements CommandLineRunner {
 
 		//productRepository.deleteById(UUID.fromString("6a798a2b-5f0f-4f4b-baba-8972ee20d8b3"));
 
-		Optional<Category> Optionalcategory = categoryRepository.findById(UUID.fromString("408c8106-48d2-46e0-bec5-08a546fce343"));
+//		Optional<Category> Optionalcategory = categoryRepository.findById(UUID.fromString("408c8106-48d2-46e0-bec5-08a546fce343"));
+//
+//		Category category = Optionalcategory.get();
+//
+//		List<Product> products = category.getProducts();category
+//
+//		for(Product product : products){
+//			System.out.println(product.getTitle());jt_users_seq
+//		}
 
-		Category category = Optionalcategory.get();
-
-		List<Product> products = category.getProducts();
-
-		for(Product product : products){
-			System.out.println(product.getTitle());
+		List<Product> products1 = productRepository.findAllByTitleLike("%Min%");
+		for(Product product : products1){
+			System.out.println(product.toString());
 		}
 
 	}
