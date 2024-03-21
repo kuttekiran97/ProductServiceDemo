@@ -2,6 +2,8 @@ package com.productservice.productservice.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,4 +20,5 @@ public class Order extends BaseModel{
      */
     @ManyToMany
     private List<Product> products;
+
 }
