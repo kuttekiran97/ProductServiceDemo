@@ -21,7 +21,8 @@ public interface ProductRepository extends JpaRepository<Product, UUID> {
     List<Product> findAllByPrice_ValueBetween(Integer a,Integer b);
 
 
-    @Query(value = "select * from product" , nativeQuery = true)
+    //@Query(value = "select * from product" , nativeQuery = true)  => MYSQL Query
+    @Query("SELECT p FROM Product p")  //This is for JPQL Query
     List<Product> findAllByTitleLike(String s);
 
 

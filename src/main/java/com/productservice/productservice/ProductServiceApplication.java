@@ -125,10 +125,10 @@ public class ProductServiceApplication implements CommandLineRunner {
 //			System.out.println(product.getTitle());jt_users_seq
 //		}
 
-		List<Product> products1 = productRepository.findAllByTitleLike("%min%");
-		for(Product product : products1){
-			System.out.println(product.toString());
-		}
+//		List<Product> products1 = productRepository.findAllByTitleLike("%min%");
+//		for(Product product : products1){
+//			System.out.println(product.toString());
+//		}
 
 	}
 }
