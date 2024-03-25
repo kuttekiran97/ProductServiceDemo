@@ -90,8 +90,8 @@ CREATE TABLE st_users
     dtype    VARCHAR(31) NULL,
     name     VARCHAR(255) NULL,
     email_id VARCHAR(255) NULL,
-    avg_rating DOUBLE NOT NULL,
     psp DOUBLE NOT NULL,
+    avg_rating DOUBLE NOT NULL,
     CONSTRAINT pk_st_users PRIMARY KEY (id)
 );
 
