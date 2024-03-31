@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Service
-@Primary
+
 public class SelfProductServiceImpl implements ProductService{
 
     private ProductRepository productRepository;

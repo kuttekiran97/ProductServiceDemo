@@ -4,11 +4,12 @@ import com.productservice.productservice.Exceptions.ProductNotFoundException;
 import com.productservice.productservice.dtos.FakeStoreProductsDto;
 import com.productservice.productservice.dtos.GenericProductDto;
 import com.productservice.productservice.thirdPartyClients.fakeStoreClient.FakeStoreClientAdapter;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Primary
 @Service("FakeStoreProductService")  //This annotation creates an object automatically by spring and passes to the constructor
 public class FakeStoreProductService implements ProductService {
 

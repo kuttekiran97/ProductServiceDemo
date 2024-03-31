@@ -39,6 +39,7 @@ public class FakeStoreClientAdapter {
         FakeStoreProductsDto fakeStoreProductsDto = responseEntity.getBody();
         if(fakeStoreProductsDto==null){
             throw new ProductNotFoundException("Product not found with this id " +  id);
+
         }
         return fakeStoreProductsDto;
     }

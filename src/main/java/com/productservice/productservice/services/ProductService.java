@@ -1,9 +1,7 @@
 package com.productservice.productservice.services;
 
 import com.productservice.productservice.Exceptions.ProductNotFoundException;
-import com.productservice.productservice.dtos.FakeStoreProductsDto;
 import com.productservice.productservice.dtos.GenericProductDto;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
