@@ -19,28 +19,28 @@ import java.util.Optional;
 import java.util.UUID;
 
 @SpringBootApplication
-public class ProductServiceApplication implements CommandLineRunner {
+public class ProductServiceApplication  {
 // 	private ST_MentorRepository ST_mentorRepository;
 //	 private ST_UserRepository ST_userRepository;
 //	 private ST_StudentRepository ST_studentRepository;
 
-	private ProductRepository productRepository;
-
-
-	ProductServiceApplication(ProductRepository productRepository){
-
-		this.productRepository =  productRepository;
-
-	}
+//	private ProductRepository productRepository;
+//
+//
+//	ProductServiceApplication(ProductRepository productRepository){
+//
+//		this.productRepository =  productRepository;
+//
+//	}
 	public static void main(String[] args) {
 		SpringApplication.run(ProductServiceApplication.class, args);
 	}
 
-	@Override
-	/*@Transactional  This annotation is needed,if the Product in Category class is Lazy.
-	 The queries should be in the same transactions,else you will get the error.
-	 Adding this annotation,makes all the queries in this method will be in one transaction*/
-	public void run(String... args) throws Exception {
+//	@Override
+//	/*@Transactional  This annotation is needed,if the Product in Category class is Lazy.
+//	 The queries should be in the same transactions,else you will get the error.
+//	 Adding this annotation,makes all the queries in this method will be in one transaction*/
+//	public void run(String... args) throws Exception {
 //		Mentor mentor=new Mentor();
 //		mentor.setAvgRating(4.9);
 //		mentor.setName("Kiran");
@@ -130,5 +130,5 @@ public class ProductServiceApplication implements CommandLineRunner {
 //			System.out.println(product.toString());
 //		}
 
-	}
+
 }
