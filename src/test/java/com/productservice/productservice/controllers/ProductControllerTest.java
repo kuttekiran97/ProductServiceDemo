@@ -6,11 +6,14 @@ import com.productservice.productservice.services.ProductService;
 import com.productservice.productservice.thirdPartyClients.fakeStoreClient.FakeStoreClientAdapter;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.Captor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -25,6 +28,10 @@ public class ProductControllerTest {
     @MockBean  /*Here we are not using Autowired since we don't want to create actual object.
                 So we want Mocked dependency that we are only using in this class.*/
     private ProductService productService;
+
+
+    @Captor
+    private ArgumentCaptor<Long> argumentCaptor;
 
     @Test
     @DisplayName("1+1=2")
@@ -58,6 +65,26 @@ public class ProductControllerTest {
 
         when(productService.getProductByID(1000L)).thenThrow(ProductNotFoundException.class);  //Mocked the ProductService
         assertThrows(ProductNotFoundException.class,()->productController.getProductByID(1000L)); //Tested ProductController
+    }
+
+
+
+    // Demo of Argument Captures
+    @Test
+    @DisplayName("testProductControllerCallsProductServiceWithSameProductIdAsInput")
+    void testIfSameInput() throws ProductNotFoundException {
+        //This is the test case to check if productController is passing the same productId to the
+        //productService as the input.
+        Long id = 100L;
+
+        when(productService.getProductByID(id)).thenReturn(new GenericProductDto());
+
+
+        GenericProductDto genericProductDto =  productController.getProductByID(id);
+
+        verify(productService).getProductByID(argumentCaptor.capture());
+
+        assertEquals(id, argumentCaptor.getValue());
     }
 
 
